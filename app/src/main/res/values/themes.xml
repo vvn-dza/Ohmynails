@@ -8,7 +8,7 @@
     <style name="Theme.Taptaze" parent="Base.Theme.Taptaze">
         <item name="backgroundTint">@color/white</item>
         <item name="windowActionBar">false</item>
-        <item name="colorPrimary">@color/yellow</item>
+        <item name="colorPrimary">#864A92</item>
         <item name="fontFamily">sans-serif-medium</item>
     </style>
 

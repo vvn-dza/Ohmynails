@@ -1,16 +1,11 @@
 package com.example.taptaze.ui.main.favorite
 
-import android.Manifest
 import android.app.DatePickerDialog
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.telephony.SmsManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.taptaze.R
 import java.util.*
@@ -41,17 +36,6 @@ class FavoritesFragment : Fragment() {
         val bookButton = view.findViewById<Button>(R.id.button)
         val spinner = view.findViewById<Spinner>(R.id.spinner)
 
-        // Request SMS permission
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.SEND_SMS)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.SEND_SMS),
-                0
-            )
-        }
-
         // Spinner setup
         val adapter = ArrayAdapter(
             requireContext(),
@@ -68,7 +52,7 @@ class FavoritesFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
-        // Date picker
+        // Date picker with previous dates disabled
         dateButton.setOnClickListener {
             val calendar = Calendar.getInstance()
             val year = calendar[Calendar.YEAR]
@@ -82,6 +66,7 @@ class FavoritesFragment : Fragment() {
                     dateButton.text = selectedDate
                 }, year, month, day
             )
+            datePickerDialog.datePicker.minDate = calendar.timeInMillis // Disable past dates
             datePickerDialog.show()
         }
 
@@ -91,30 +76,23 @@ class FavoritesFragment : Fragment() {
             phone = phoneEditText.text.toString().trim()
             val disease = diseaseEditText.text.toString().trim()
 
-            if (name.isEmpty() || phone.isNullOrEmpty() || disease.isEmpty()) {
+            if (name.isEmpty() || phone!!.isEmpty() || disease.isEmpty()) {
                 Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (phone!!.length == 10 && phone!!.all { it.isDigit() }) {
-                sendMessage(name, disease)
+            if (selectedDate == null) {
+                Toast.makeText(requireContext(), "Select a valid date", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (phone!!.length == 10) {
+                Toast.makeText(requireContext(), "Appointment booked successfully", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(requireContext(), "Enter a valid phone number", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Enter valid phone number", Toast.LENGTH_SHORT).show()
             }
         }
 
         return view
-    }
-
-    private fun sendMessage(name: String, disease: String) {
-        try {
-            val sms = SmsManager.getSmsManagerForSubscriptionId(SmsManager.getDefaultSmsSubscriptionId())
-            sms.sendTextMessage(phone, null, "Appointment booked for $name with $disease on $selectedDate at $time.", null, null)
-
-            Toast.makeText(requireContext(), "Appointment booked successfully", Toast.LENGTH_LONG).show()
-
-        } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Failed to book appointment", Toast.LENGTH_LONG).show()
-        }
     }
 }

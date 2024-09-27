@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -19,7 +18,6 @@ import java.util.*
 class FavoritesFragment : Fragment() {
 
     private var phone: String? = null
-    private var message: String? = null
     private var selectedDate: String? = null
     private var time: String? = null
     private val timings = arrayOf(
@@ -93,15 +91,15 @@ class FavoritesFragment : Fragment() {
             phone = phoneEditText.text.toString().trim()
             val disease = diseaseEditText.text.toString().trim()
 
-            if (name.isEmpty() || phone!!.isEmpty() || disease.isEmpty()) {
+            if (name.isEmpty() || phone.isNullOrEmpty() || disease.isEmpty()) {
                 Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (phone!!.length == 10) {
+            if (phone!!.length == 10 && phone!!.all { it.isDigit() }) {
                 sendMessage(name, disease)
             } else {
-                Toast.makeText(requireContext(), "Enter valid phone number", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Enter a valid phone number", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -110,10 +108,11 @@ class FavoritesFragment : Fragment() {
 
     private fun sendMessage(name: String, disease: String) {
         try {
-            val sms = SmsManager.getDefault()
+            val sms = SmsManager.getSmsManagerForSubscriptionId(SmsManager.getDefaultSmsSubscriptionId())
             sms.sendTextMessage(phone, null, "Appointment booked for $name with $disease on $selectedDate at $time.", null, null)
 
             Toast.makeText(requireContext(), "Appointment booked successfully", Toast.LENGTH_LONG).show()
+
         } catch (e: Exception) {
             Toast.makeText(requireContext(), "Failed to book appointment", Toast.LENGTH_LONG).show()
         }

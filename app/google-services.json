@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "474493862964",
-    "project_id": "taptaze-60bb9",
-    "storage_bucket": "taptaze-60bb9.appspot.com"
+    "project_number": "552681053793",
+    "project_id": "ohmynails-8cd6a",
+    "storage_bucket": "ohmynails-8cd6a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:474493862964:android:2e744a88de957a0158f661",
+        "mobilesdk_app_id": "1:552681053793:android:fc5984cd201604aa7a5420",
         "android_client_info": {
           "package_name": "com.example.taptaze"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA7riKHSfvdH_RqEmM3C1d90P-EKKT2RWM"
+          "current_key": "AIzaSyDXeQvGyxQI611wu9QEn9tuW6LCADFqHlQ"
         }
       ],
       "services": {

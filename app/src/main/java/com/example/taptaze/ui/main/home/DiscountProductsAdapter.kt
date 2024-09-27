@@ -38,21 +38,21 @@ class DiscountProductsAdapter(
 
             var isFavorite = product.isFavorite
 
-            if (isFavorite) {
-                ivFavorite.setImageResource(R.drawable.ic_favorite_filled)
-            }
+            //if (isFavorite) {
+                //ivFavorite.setImageResource(R.drawable.ic_favorite_filled)
+            //}
 
-            ivFavorite.setOnClickListener {
-                isFavorite = !isFavorite
-                ivFavorite.apply {
-                    if (isFavorite) {
-                        ivFavorite.setImageResource(R.drawable.ic_favorite_filled)
-                    } else {
-                        ivFavorite.setImageResource(R.drawable.ic_favorite)
-                    }
-                }
-                productListener.onFavButtonClick(product)
-            }
+            //ivFavorite.setOnClickListener {
+               // isFavorite = !isFavorite
+                //ivFavorite.apply {
+                    //if (isFavorite) {
+                     //   ivFavorite.setImageResource(R.drawable.ic_favorite_filled)
+                    //} else {
+                      //  ivFavorite.setImageResource(R.drawable.ic_favorite)
+                   // }
+               // }
+               // productListener.onFavButtonClick(product)
+           // }
 
             ivProduct.setOnClickListener {
                 productListener.onProductClick(product.id)

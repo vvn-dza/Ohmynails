@@ -1,86 +1,121 @@
 package com.example.taptaze.ui.main.favorite
 
+import android.Manifest
+import android.app.DatePickerDialog
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.telephony.SmsManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.example.taptaze.R
-import com.example.taptaze.common.invisible
-import com.example.taptaze.common.visible
-import com.example.taptaze.data.model.ProductUI
-import com.example.taptaze.databinding.FragmentFavoriteBinding
-import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
+class FavoritesFragment : Fragment() {
 
-@AndroidEntryPoint
-class FavoriteFragment : Fragment(R.layout.fragment_favorite),
-    FavoriteProductsAdapter.ProductListener {
-
-    private lateinit var binding: FragmentFavoriteBinding
-    private val viewModel by viewModels<FavoriteViewModel>()
-    private val favoriteProductsAdapter by lazy { FavoriteProductsAdapter(this) }
-
+    private var phone: String? = null
+    private var message: String? = null
+    private var selectedDate: String? = null
+    private var time: String? = null
+    private val timings = arrayOf(
+        "10 A.M - 11 A.M",
+        "11.30 A.M - 12.30 P.M",
+        "2 P.M - 3 P.M",
+        "4 P.M - 5 P.M",
+        "6 P.M - 7 P.M"
+    )
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFavoriteBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+        val view = inflater.inflate(R.layout.fragment_favorite, container, false)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        val nameEditText = view.findViewById<EditText>(R.id.editTextTextPersonName)
+        val diseaseEditText = view.findViewById<EditText>(R.id.editTextTextPersonName2)
+        val phoneEditText = view.findViewById<EditText>(R.id.editTextPhone)
+        val dateButton = view.findViewById<Button>(R.id.button2)
+        val bookButton = view.findViewById<Button>(R.id.button)
+        val spinner = view.findViewById<Spinner>(R.id.spinner)
 
-        viewModel.getFavoriteProducts()
-
-        with(binding) {
-            rvFavorites.adapter = favoriteProductsAdapter
+        // Request SMS permission
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.SEND_SMS)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.SEND_SMS),
+                0
+            )
         }
 
-        observeData()
-    }
+        // Spinner setup
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item, timings
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
 
-    private fun observeData() = with(binding) {
-        viewModel.favoriteState.observe(viewLifecycleOwner) { state ->
-
-            when (state) {
-
-                FavoriteState.Loading -> {
-                    progressBar5.visible()
-                }
-
-                is FavoriteState.Data -> {
-                    binding.rvFavorites.visible()
-                    favoriteProductsAdapter.submitList(state.products)
-                    progressBar5.invisible()
-                }
-
-                is FavoriteState.Error -> {
-                    binding.rvFavorites.invisible()
-                    Toast.makeText(
-                        requireContext(),
-                        state.throwable.message.toString(),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    progressBar5.invisible()
-                }
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                time = parent.getItemAtPosition(position).toString()
             }
 
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
+
+        // Date picker
+        dateButton.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar[Calendar.YEAR]
+            val month = calendar[Calendar.MONTH]
+            val day = calendar[Calendar.DAY_OF_MONTH]
+
+            val datePickerDialog = DatePickerDialog(
+                requireContext(),
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                    dateButton.text = selectedDate
+                }, year, month, day
+            )
+            datePickerDialog.show()
+        }
+
+        // Booking appointment
+        bookButton.setOnClickListener {
+            val name = nameEditText.text.toString().trim()
+            phone = phoneEditText.text.toString().trim()
+            val disease = diseaseEditText.text.toString().trim()
+
+            if (name.isEmpty() || phone!!.isEmpty() || disease.isEmpty()) {
+                Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (phone!!.length == 10) {
+                sendMessage(name, disease)
+            } else {
+                Toast.makeText(requireContext(), "Enter valid phone number", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        return view
     }
 
-    override fun onProductClick(id: Int) {
-        val action = FavoriteFragmentDirections.favoriteToDetail(id)
-        findNavController().navigate(action)
-    }
+    private fun sendMessage(name: String, disease: String) {
+        try {
+            val sms = SmsManager.getDefault()
+            sms.sendTextMessage(phone, null, "Appointment booked for $name with $disease on $selectedDate at $time.", null, null)
 
-    override fun onFavButtonClick(product: ProductUI) {
-        viewModel.removeFromFavorites(product)
+            Toast.makeText(requireContext(), "Appointment booked successfully", Toast.LENGTH_LONG).show()
+        } catch (e: Exception) {
+            Toast.makeText(requireContext(), "Failed to book appointment", Toast.LENGTH_LONG).show()
+        }
     }
 }

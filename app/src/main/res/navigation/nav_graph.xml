@@ -75,14 +75,15 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.taptaze.ui.main.favorite.FavoriteFragment"
-        android:label="FavoriteFragment"
-        tools:layout="@layout/fragment_favorite">
-        <action
-            android:id="@+id/favoriteToDetail"
-            app:destination="@id/detailFragment" />
-    </fragment>
-    <fragment
+        android:name="com.example.taptaze.ui.main.favorite.FavoritesFragment"
+    android:label="FavoritesFragment"
+    tools:layout="@layout/fragment_favorite">
+    <action
+        android:id="@+id/favoriteToDetail"
+        app:destination="@id/detailFragment" />
+</fragment>
+
+<fragment
         android:id="@+id/profileFragment"
         android:name="com.example.taptaze.ui.main.profile.ProfileFragment"
         android:label="ProfileFragment"

@@ -21,7 +21,7 @@
     <item
         android:id="@+id/favoriteFragment"
         android:icon="@drawable/ic_fav_menu"
-        android:title="Favorite"
+        android:title="Appointment"
         />
 
 

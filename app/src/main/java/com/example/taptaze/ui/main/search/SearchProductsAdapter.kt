@@ -42,21 +42,21 @@ class SearchProductsAdapter(
                 searchProductListener.onCartButtonClick(product.id)
             }
 
-            if (isFavorite) {
-                ivFavorite.setImageResource(R.drawable.ic_favorite_filled)
-            }
+          //  if (isFavorite) {
+               // ivFavorite.setImageResource(R.drawable.ic_favorite_filled)
+           // }
 
-            ivFavorite.setOnClickListener {
-                isFavorite = !isFavorite
-                ivFavorite.apply {
-                    if (isFavorite) {
-                        searchProductListener.onFavButtonClick(product)
-                        ivFavorite.setImageResource(R.drawable.ic_favorite_filled)
-                    } else {
-                        ivFavorite.setImageResource(R.drawable.ic_favorite)
-                    }
-                }
-            }
+           // ivFavorite.setOnClickListener {
+            //    isFavorite = !isFavorite
+             //   ivFavorite.apply {
+               //     if (isFavorite) {
+                //        searchProductListener.onFavButtonClick(product)
+                //        ivFavorite.setImageResource(R.drawable.ic_favorite_filled)
+                 //   } else {
+                 //       ivFavorite.setImageResource(R.drawable.ic_favorite)
+                 //   }
+               // }
+          //  }
 
 
             if (product.saleState == true) {

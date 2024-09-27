@@ -35,9 +35,9 @@ class ProductsAdapter(
 
             var isFavorite = product.isFavorite
 
-            if (isFavorite) {
-                ivFavorite.setImageResource(R.drawable.ic_favorite_filled)
-            }
+           // if (isFavorite) {
+              //  ivFavorite.setImageResource(R.drawable.ic_favorite_filled)
+           // }
 
             ivProduct.setOnClickListener {
                 productListener.onProductClick(product.id)
@@ -47,17 +47,17 @@ class ProductsAdapter(
                 productListener.onCartButtonClick(product.id)
             }
 
-            ivFavorite.setOnClickListener {
-                isFavorite = !isFavorite
-                ivFavorite.apply {
-                    if (isFavorite) {
-                        ivFavorite.setImageResource(R.drawable.ic_favorite_filled)
-                    } else {
-                        ivFavorite.setImageResource(R.drawable.ic_favorite)
-                    }
-                }
-                productListener.onFavButtonClick(product)
-            }
+            //ivFavorite.setOnClickListener {
+               // isFavorite = !isFavorite
+              //  ivFavorite.apply {
+                   // if (isFavorite) {
+                  //      ivFavorite.setImageResource(R.drawable.ic_favorite_filled)
+                 //   } else {
+                   //     ivFavorite.setImageResource(R.drawable.ic_favorite)
+                  //  }
+               // }
+               // productListener.onFavButtonClick(product)
+          //  }
 
             if (product.saleState == true) {
                 tvProductPrice.textSize = 14f

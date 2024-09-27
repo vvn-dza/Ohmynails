@@ -1,7 +1,9 @@
 package com.example.taptaze.ui.login.signin
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,6 +17,7 @@ import com.example.taptaze.common.visible
 import com.example.taptaze.databinding.FragmentSigninBinding
 import com.example.taptaze.ui.login.AuthState
 import com.example.taptaze.ui.login.AuthViewModel
+import com.example.taptaze.ui.main.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,10 +27,10 @@ class SigninFragment : Fragment(R.layout.fragment_signin) {
     private val viewModel by viewModels<AuthViewModel>()
 
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeData()
-
         with(binding) {
             button.setOnClickListener {
                 if (checkInfos(etEmail.text.toString(), etPassword.text.toString())) {
@@ -76,6 +79,9 @@ class SigninFragment : Fragment(R.layout.fragment_signin) {
         }
         return checkInfos
     }
+
+
+
 
 
 }

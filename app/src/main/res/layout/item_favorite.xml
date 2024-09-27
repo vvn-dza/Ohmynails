@@ -62,7 +62,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_product"
             app:layout_constraintVertical_bias="1.0"
-            tools:text="₺22.90" />
+            tools:text="₹22.90" />
 
         <TextView
             android:id="@+id/tv_product_sale_price"

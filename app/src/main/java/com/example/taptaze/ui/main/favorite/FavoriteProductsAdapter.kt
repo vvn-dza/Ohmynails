@@ -45,10 +45,10 @@ class FavoriteProductsAdapter(
                 tvProductPrice.textSize = 14f
                 tvProductSalePrice.visible()
                 //bunlar düzeltilcek
-                tvProductSalePrice.text = "₺${product.salePrice}"
-                tvProductPrice.setText(Html.fromHtml("<s>₺${product.price}</s>"))
+                tvProductSalePrice.text = "₹${product.salePrice}"
+                tvProductPrice.setText(Html.fromHtml("<s>₹${product.price}</s>"))
             } else {
-                tvProductPrice.text = "₺${product.price}"
+                tvProductPrice.text = "₹${product.price}"
             }
         }
     }

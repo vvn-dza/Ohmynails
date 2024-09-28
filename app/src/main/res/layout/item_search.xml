@@ -70,7 +70,7 @@
             app:layout_constraintEnd_toStartOf="@+id/fab_add_to_cart"
             app:layout_constraintHorizontal_bias="0.555"
             app:layout_constraintStart_toEndOf="@+id/tv_product_price"
-            tools:text="₺22.90" />
+            tools:text="₹22.90" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_to_cart"

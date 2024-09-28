@@ -51,7 +51,7 @@
         android:layout_height="60dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Enter Remarks"
+        android:hint="Enter Details"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.759"

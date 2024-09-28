@@ -61,11 +61,11 @@ class SearchProductsAdapter(
 
             if (product.saleState == true) {
                 tvProductPrice.textSize = 14f
-                tvProductPrice.setText(Html.fromHtml("<s>₺${product.price}</s>"))
+                tvProductPrice.setText(Html.fromHtml("<s>₹${product.price}</s>"))
                 tvProductSalePrice.visible()
-                tvProductSalePrice.text = "₺${product.salePrice}"
+                tvProductSalePrice.text = "₹${product.salePrice}"
             } else {
-                tvProductPrice.text = "₺${product.price}"
+                tvProductPrice.text = "₹${product.price}"
             }
         }
     }

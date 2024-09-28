@@ -163,7 +163,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="₺115,19" />
+                    tools:text="₹115,19" />
 
                 <TextView
                     android:id="@+id/tv_product_sale_price"
@@ -177,7 +177,7 @@
                     app:layout_constraintHorizontal_bias="0.06"
                     app:layout_constraintStart_toEndOf="@+id/tv_product_price"
                     app:layout_constraintTop_toTopOf="@+id/tv_product_price"
-                    tools:text="₺22.90" />
+                    tools:text="₹22.90" />
 
                 <Button
                     android:id="@+id/btn_add_to_cart"

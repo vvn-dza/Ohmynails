@@ -1,42 +1,61 @@
-Oh My Nails - Mobile App
-Oh My Nails is a mobile app designed to simplify the process of booking nail salon appointments and purchasing nail care products. Whether you're a salon-goer or a DIY enthusiast, this app brings together the convenience of booking services and buying products in one place.
+# Oh My Nails - Mobile App
 
-🚀 Features
-Easy Appointment Booking
-Schedule appointments for various nail services like extensions, gel polish, and more.
+**Oh My Nails** is a mobile application designed to streamline the process of booking nail salon services and purchasing nail products online. The app offers both salon appointment scheduling and an integrated e-commerce platform, providing a seamless experience for users.
 
-Integrated E-Commerce Platform
-Browse a wide range of nail products including false nails, nail glue, gel polishes, and essential tools.
+---
 
-Secure Payment Gateway
-Complete secure transactions for both services and products right within the app.
+## 🚀 Features
 
-User-Friendly Interface
-A seamless and intuitive interface to easily navigate between booking services and shopping for products.
+- **Easy Appointment Booking**  
+  Schedule appointments for various nail services like extensions, gel polish, and more at your convenience.
 
-⚙️ Technologies Used
-Frontend: Android (Java/Kotlin)
-Backend: Firebase (Authentication, Database)
-Payment Integration: Secure payment gateway for transactions
-📥 Installation
-Clone the repository:
+- **Integrated E-Commerce Platform**  
+  Browse a wide range of nail products such as false nails, nail glue, gel polishes, and essential nail tools.
 
-bash
-Copy code
-git clone https://github.com/yourusername/oh-my-nails.git
-Open the project in Android Studio.
+- **Secure Payment Gateway**  
+  Complete secure transactions for both services and products directly within the app.
 
-Run the app on your emulator or Android device.
+- **User-Friendly Interface**  
+  Navigate through the app effortlessly to book services or shop for products.
 
-💡 Usage
-Sign up / Log in
-Create an account or log in using Firebase Authentication.
+---
 
-Browse & Add Products
-Explore a variety of nail care products and add them to your cart.
+## ⚙️ Technologies Used
 
-Book Your Appointment
-Choose your desired services and select a convenient date and time.
+- **Frontend**:  
+  - Android (Java/Kotlin)
 
-Secure Checkout
-Complete your purchase using the integrated payment system.
+- **Backend**:  
+  - Firebase (Authentication, Database)
+
+- **Payment Integration**:  
+  - Secure payment gateway for processing transactions
+
+- **Architecture**:  
+  - MVVM (Model-View-ViewModel) for clean code and scalability
+
+---
+
+## 💡 Usage
+
+1. **Sign up / Log in**  
+   Create an account or log in using Firebase Authentication.
+
+2. **Browse & Add Products**  
+   Explore various nail care products and add them to your cart.
+
+3. **Book Your Appointment**  
+   Choose services like nail extensions, gel polish, etc., and select a convenient date and time.
+
+4. **Secure Checkout**  
+   Complete your purchase using the integrated payment system.
+
+---
+
+## 📥 Installation
+
+To run the app locally:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/oh-my-nails.git

@@ -1,22 +1,42 @@
 Oh My Nails - Mobile App
-Oh My Nails is a mobile app that simplifies booking nail salon services and purchasing nail care products. Users can easily schedule appointments for services like nail extensions and gel polish, while also browsing and buying products like false nails and polishes.
+Oh My Nails is a mobile app designed to simplify the process of booking nail salon appointments and purchasing nail care products. Whether you're a salon-goer or a DIY enthusiast, this app brings together the convenience of booking services and buying products in one place.
 
-Features
-Book Services: Schedule appointments for various nail services.
-E-commerce: Browse and purchase nail products directly in-app.
-Secure Payments: Complete transactions securely for services and products.
-User-Friendly: Easy navigation between booking and shopping.
-Technology
+🚀 Features
+Easy Appointment Booking
+Schedule appointments for various nail services like extensions, gel polish, and more.
+
+Integrated E-Commerce Platform
+Browse a wide range of nail products including false nails, nail glue, gel polishes, and essential tools.
+
+Secure Payment Gateway
+Complete secure transactions for both services and products right within the app.
+
+User-Friendly Interface
+A seamless and intuitive interface to easily navigate between booking services and shopping for products.
+
+⚙️ Technologies Used
 Frontend: Android (Java/Kotlin)
 Backend: Firebase (Authentication, Database)
-Payment: Integrated payment gateway
-Installation
-Clone the repo:
+Payment Integration: Secure payment gateway for transactions
+📥 Installation
+Clone the repository:
+
 bash
 Copy code
 git clone https://github.com/yourusername/oh-my-nails.git
-Open in Android Studio and run on an emulator or device.
-Usage
-Sign up or log in.
-Browse services/products and add to cart.
-Book appointments and complete payments.
+Open the project in Android Studio.
+
+Run the app on your emulator or Android device.
+
+💡 Usage
+Sign up / Log in
+Create an account or log in using Firebase Authentication.
+
+Browse & Add Products
+Explore a variety of nail care products and add them to your cart.
+
+Book Your Appointment
+Choose your desired services and select a convenient date and time.
+
+Secure Checkout
+Complete your purchase using the integrated payment system.
